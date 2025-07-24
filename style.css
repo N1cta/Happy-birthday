@@ -1,0 +1,1028 @@
+@import url('https://fonts.googleapis.com/css?family=Carter+One');
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Carter One", sans-serif;
+  font-weight: bold !important;
+  overflow: hidden;
+}
+
+/* Countdown Styles */
+.countdown-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 192, 203, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  transition: opacity 0.5s ease;
+}
+
+.countdown-number {
+  font-size: 20em;
+  color: #FF1493;
+  font-family: 'Carter One', sans-serif;
+  animation: pulse 0.5s ease infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.2); }
+}
+
+/* Adjust existing first slide styles */
+.first--slide {
+  display: none; /* Now controlled by JavaScript */
+}
+
+/* First Slide */
+.first--slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  color: #e46ac4;
+  text-transform: uppercase;
+  font-weight: 700;
+  overflow: hidden;
+}
+
+.first--slide::before {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  background:  #ffffff;
+  z-index: 3;
+  animation: firstSlideRemove 300ms ease 6s 1 forwards;
+}
+
+.slide--content {
+  overflow: hidden;
+  text-align: center;
+  padding: 4em;
+  position: absolute;
+  width: auto;
+  height: auto;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -45%);
+  animation:firstSlideOver 500ms ease 2000ms 1  forwards;
+}
+
+.first--slide .slide--content h1 {
+  position: relative;
+  animation: firstSlideTextOne 500ms ease 0s 1 forwards;
+  font-size: 6em;
+  margin: 0;
+  line-height: 1.2em;
+  opacity: 0;
+  transform: scale(0) rotate(-45deg);
+}
+
+.first--slide .slide--content h2 {
+  position: relative;
+  color: #f9b3ad;
+  font-size: 4em;
+  line-height: 1em;
+  margin: 0;
+  top: -1.6em;
+  opacity: 0;
+  animation: firstSlideTextTwo 500ms ease 350ms 1 forwards;
+}
+
+.first--slide span {
+  display: inline-block;
+  position: absolute;
+  background: #ce0fa1e3;
+}
+
+.first--slide span.top {
+  left: 0;
+  top: 0;
+  width: 0px;
+  height: 2px;
+  animation: firstSlideBorderOne 300ms ease 650ms 1 forwards;
+}
+
+.first--slide span.right {
+  right: 0;
+  top: 0;
+  width: 2px;
+  height: 0;
+  animation: firstSlideBorderTwo 300ms ease 950ms 1 forwards;
+}
+
+.first--slide span.bottom {
+  right: 0;
+  bottom: 0;
+  width: 0px;
+  height: 2px;
+  animation: firstSlideBorderOne 300ms ease 1250ms 1 forwards;
+}
+
+.first--slide span.left {
+  left: 0;
+  bottom: 0;
+  height: 0;
+  width: 2px;
+  animation: firstSlideBorderTwo 300ms ease 1550ms 1 forwards;
+}
+
+.slide--content::after {
+  content: "";
+  position: absolute;
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  background: #ce0fa1e3;
+  z-index: -1;
+  left: -75px;
+  top: -75px;
+  transform: scale(0);
+  animation: firstSlideOverlayOne 300ms ease 1850ms 1 forwards,
+             firstSlideOverlayTwo 500ms ease 2150ms 1 forwards;
+}
+
+/* Second Slide */
+.slide--content--one {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  letter-spacing: 0.1em;
+  animation: secondSlideMoveUp 400ms ease 750ms 1 forwards,
+             secondSlideOver 1s ease 2.5s 1 forwards;
+}
+
+.slide--content--one h1, 
+.slide--content--one h2 {
+  position: relative;
+  line-height: 1em;
+  margin: 0;
+} 
+
+.slide--content--one h1.first {
+  font-size: 6em;
+  opacity: 0;
+  transform: rotate(-180deg) scale(0);
+  animation: secondSlideTextOne 500ms ease 0s 1 forwards;
+}
+
+.slide--content--one h2.first {
+  font-size: 5em;
+  transform: scale(0);
+  opacity: 0;
+  animation: secondSlideTextTwo 300ms ease 490ms 1 forwards;
+}
+
+.slide--content--one h2.second {
+  font-size: 5em;
+  transform: scale(0);
+  opacity: 0;
+  animation: secondSlideTextThree 200ms ease 1000ms 1 forwards;
+}
+
+.slide--content--one h1.second {
+  top: 3em;
+  color: #fcbb5e;
+  font-size: 6em;
+  opacity: 0;
+  animation: secondSlideTextFour 300ms ease 1200ms 1 forwards;
+}
+
+.circle--stuff {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circle--stuff svg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  opacity: 0;
+  top: 8em;
+  animation: secondSlideSVG 500ms ease 1400ms 1 forwards;
+}
+
+/* Second Canvas */
+.second--canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.second--canvas::before, 
+.second--canvas::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  animation: secondCanvasIntro 500ms ease 0s 1 forwards;
+}
+
+.second--canvas::before {
+  background: #FFC1BB;
+}
+
+.second--canvas::after {
+  background: #EF8A84;
+  animation-delay: 500ms;
+}
+
+.second--canvas .content {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  height: auto;
+  top: 40%;
+  transform: translateY(-40%);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 5em;
+  color: #fff;
+}
+
+.second--canvas .content h2 {
+  position: relative;
+  margin: 0;
+}
+
+.second--canvas .content h2:nth-child(1) {
+  transform: rotate(-90deg);
+  left: -2em;
+  top: -1em;
+  opacity: 0;
+  animation: secondCanvasTextOne 500ms ease 1s 1 forwards;
+}
+
+.second--canvas .content h2:nth-child(2) {
+  transform: translateX(5em);
+  opacity: 0;
+  animation: secondCanvasTextTwo 500ms ease 1.5s 1 forwards;
+}
+
+.second--canvas .content h2:nth-child(3) {
+  transform: rotate(90deg);
+  top: 1em;
+  left: -2em;
+  opacity: 0;
+  animation: secondCanvasTextThree 500ms ease 2s 1 forwards;
+}
+
+.canvas--remove {
+  position: absolute;
+  width: 100%;
+  height: 0%;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 2;
+  animation: canvasRemove 500ms ease 3s 1 forwards;
+}
+
+/* Third Canvas */
+.third--canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+.star--bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: url("../images/Star-Transparent-PNG.png") center / cover repeat;
+  opacity: 0;
+  animation: thirdCanvasBackground 500ms ease 3s 1 forwards;
+}
+
+.star--bg img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 1em;
+  animation: thirdCanvasBanner 500ms ease 3.5s 1 forwards;
+  opacity: 0;
+}
+
+.star--bg img#b1 {
+  transform: rotate(-15deg);
+  left: 0;
+}
+
+.star--bg img#b2 {
+  transform: rotate(15deg);
+  right: 0;
+}
+
+.third--canvas::before,
+.third--canvas::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  animation: thirdCanvasIntro 500ms ease 0s 1 forwards;
+}
+
+.third--canvas::before {
+  background: #9BA2FF;
+  animation-delay: 200ms;
+}
+
+.third--canvas::after {
+  background: #1080f2;
+  animation-delay: 700ms;
+}
+
+.third--canvas .center--line {
+  position: absolute;
+  width: 0%;
+  height: 5px;
+  background: #fff;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+  animation: thirdCanvasCenterLine 500ms ease 1s 1 forwards,
+             thirdCanvasCenterLineOne 500ms ease 1.5s 1 forwards;
+}
+
+.third--canvas .center--line img {
+  position: absolute;
+  width: 10%;
+  height: auto;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  opacity: 0;
+  animation: thirdCanvasBalloons 500ms ease 2s 1 forwards;
+}
+
+.third--canvas .center--line img#bl--left {
+  left: 2em;
+}
+
+.third--canvas .center--line img#bl--right {
+  right: 2em;
+  animation-delay: 2.5s;
+}
+
+.third--canvas .center--line h1 {
+  position: absolute;
+  width: auto;
+  height: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #1080f2;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 4.6em;
+}
+
+.third--canvas .center--line h1 > span {
+  position: relative;
+  top: 2em;
+  opacity: 0;
+  animation: thirdCanvasLastText 100ms ease 3s 1 forwards;
+}
+
+.third--canvas > img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  bottom: 1em;
+  transform: scale(0);
+  animation: giftIcon 500ms ease 4300ms 1 forwards;
+}
+
+.third--canvas .center--line h1 > span{
+	position: relative;
+	top:2em;
+	opacity: 0;
+	animation:thirdCanvasLastText 100ms ease 3s 1 forwards;
+}
+
+.third--canvas .center--line h1 > span:nth-child(1){
+	animation-delay: 3s;
+}
+
+.third--canvas .center--line h1 > span:nth-child(2){
+	animation-delay: 3100ms;
+}
+
+.third--canvas .center--line h1 > span:nth-child(3){
+	animation-delay: 3200ms;
+}
+
+.third--canvas .center--line h1 > span:nth-child(4){
+	animation-delay: 3300ms;
+}
+
+.third--canvas .center--line h1 > span:nth-child(5){
+	animation-delay: 3400ms;
+}
+
+.third--canvas .center--line h1 > span:nth-child(6){
+	animation-delay: 3500ms;
+}
+
+.third--canvas .center--line h1 > span:nth-child(7){
+	animation-delay: 3600ms;
+}
+
+.third--canvas .center--line h1 > span:nth-child(8){
+	animation-delay: 3700ms;
+}
+
+.third--canvas .center--line h1 > span:nth-child(9){
+	animation-delay: 3800ms;
+}
+
+.third--canvas .center--line h1 > span:nth-child(10){
+	animation-delay: 3900ms;
+}
+
+.third--canvas .center--line h1 > span:nth-child(11){
+	animation-delay: 4000ms;
+}
+
+.third--canvas .center--line h1 > span:nth-child(12){
+	animation-delay: 4100ms;
+}
+
+.third--canvas .center--line h1 > span:nth-child(13){
+	animation-delay: 4200ms;
+}
+
+.third--canvas .center--line h1 > span:nth-child(14){
+	animation-delay: 4300ms;
+}
+
+
+.third--canvas > img#gf1 {
+  left: 35%;
+  width: 10%;
+  animation-delay: 3800ms;
+  border: 0ch;
+}
+
+.third--canvas > img#gf2 {
+  left: 45%;
+  bottom: 2em;
+  animation-delay: 4000ms;
+   width: 10%;
+    border: 0ch;
+}
+
+.third--canvas > img#gf3 {
+  left: 55%;
+  animation-delay: 3800ms; 
+  width: 10%;
+   border: 0ch;
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+
+/* Final Congratulations Section */
+.final-congratulations {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1080f2;
+  padding: 2em;
+  text-align: center;
+  color: white;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease 13s forwards;
+}
+
+.congrats-content {
+  max-width: 800px;
+}
+
+.final-congratulations h1 {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.final-congratulations p {
+  font-size: 1.5em;
+  line-height: 1.6;
+  margin-bottom: 1em;
+}
+
+/* Hearts Animation */
+/* Hearts Animation */
+.hearts-animation {
+  position: relative;
+  height: 100px;
+  margin-top: 2em;
+  width: 100%;
+}
+
+.heart {
+  position: absolute;
+  font-size: 2em;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.5));
+}
+
+.heart-1 {
+  left: 20%;
+  animation-delay: 0s;
+  color: #FF6B6B;
+}
+
+.heart-2 {
+  right: 20%;
+  animation-delay: 0.5s;
+  color: #F06595;
+}
+
+.heart-3 {
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 1s;
+  color: #FF8787;
+  font-size: 2.5em;
+}
+
+/* Float Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-25px) rotate(-5deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+}
+
+/* Restart Button */
+.restart-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  padding: 10px 20px;
+  background: #ffffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Carter One', sans-serif;
+  font-size: 1.2em;
+  opacity: 0;
+  animation: fadeIn 0.5s ease 14s forwards;
+}
+.ps{
+  color: #9ac7f4;
+}
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .final-congratulations h1 {
+    font-size: 2em;
+  }
+  
+  .final-congratulations p {
+    font-size: 1.2em;
+  }
+}
+
+/* Keyframes */
+@keyframes firstSlideRemove {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes firstSlideTextOne {
+  from {
+    opacity: 0;
+    transform: scale(0) rotate(-45deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes firstSlideTextTwo {
+  from {
+    opacity: 0;
+    top: -1.6em;
+  }
+  to {
+    opacity: 1;
+    top: 0em;
+  }
+}
+
+@keyframes firstSlideBorderOne {
+  from { width: 0px; }
+  to { width: 100%; }
+}
+
+@keyframes firstSlideBorderTwo {
+  from { height: 0; }
+  to { height: 100%; }
+}
+
+@keyframes firstSlideOver {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -45%) rotate(0deg); 
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -45%) rotate(-90deg); 
+  }
+}
+
+@keyframes firstSlideOverlayOne {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+@keyframes firstSlideOverlayTwo {
+  from { transform: scale(1); }
+  to { transform: scale(8); }
+}
+
+@keyframes secondSlideSVG {
+  from { opacity: 0; }  
+  to { opacity: 1; }
+}
+
+@keyframes secondSlideTextOne {
+  from {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes secondSlideTextTwo {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes secondSlideMoveUp {
+  from {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  to {
+    top: 40%;
+    transform: translateY(-40%);
+  }
+}
+
+@keyframes secondSlideTextThree {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes secondSlideTextFour {
+  from {
+    opacity: 0;
+    transform: scale(0);
+    top: 3em;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    top: 0em;
+  }
+}
+
+@keyframes secondSlideOver {
+  from {
+    transform: translateY(-50%) rotate(0deg);
+    left: 0;
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-50%) rotate(90deg);
+    left: 50%;
+    opacity: 0;
+  }
+}
+
+@keyframes canvasRemove {
+  from { height: 0%; }
+  to { height: 100%; }
+}
+
+@keyframes secondCanvasIntro {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes secondCanvasTextOne {
+  from {
+    transform: rotate(-90deg);
+    left: -2em;
+    top: -1em;
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg);
+    left: 0;
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes secondCanvasTextThree {
+  from {
+    transform: rotate(90deg);
+    top: 1em;
+    left: -2em;
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg);
+    top: 0em;
+    left: 0em;
+    opacity: 1;
+  }
+}
+
+@keyframes secondCanvasTextTwo {
+  from {
+    transform: translateX(5em);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes thirdCanvasBanner {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes thirdCanvasBackground {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes thirdCanvasIntro {
+  from { height: 0%; }
+  to { height: 100%; }
+}
+
+@keyframes thirdCanvasCenterLine {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes thirdCanvasCenterLineOne {
+  from { height: 5px; }
+  to { height: 200px; }
+}
+
+@keyframes thirdCanvasBalloons {
+  from {
+    opacity: 0;
+    transform: scale(0) translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(-50%);
+  }
+}
+
+@keyframes thirdCanvasLastText {
+  from {
+    opacity: 0;
+    top: 2em;
+  }
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+@keyframes giftIcon {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .first--slide .slide--content h1 {
+    font-size: 3em;
+  }
+  
+  .first--slide .slide--content h2 {
+    font-size: 2em;
+  }
+  
+  .slide--content--one h1.first,
+  .slide--content--one h1.second {
+    font-size: 3em;
+  }
+  
+  .slide--content--one h2.first,
+  .slide--content--one h2.second {
+    font-size: 2.5em;
+  }
+  
+  .second--canvas .content,
+  .third--canvas .center--line h1 {
+    font-size: 3em;
+  }
+  
+  .circle--stuff {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+body, html {
+  overflow-x: hidden;
+  touch-action: manipulation;
+}
+
+/* Адаптивные шрифты */
+.first--slide .slide--content h1 {
+  font-size: 5em !important;
+}
+
+.first--slide .slide--content h2 {
+  font-size: 3.5em !important;
+}
+
+.slide--content--one h1.first,
+.slide--content--one h1.second {
+  font-size: 4.5em !important;
+}
+
+.slide--content--one h2.first,
+.slide--content--one h2.second {
+  font-size: 3em !important;
+}
+
+.second--canvas .content,
+.third--canvas .center--line h1 {
+  font-size: 3.5em !important;
+}
+
+/* Адаптация под экран Honor 70 (1080x2400) */
+@media (max-width: 1080px) {
+  .countdown-number {
+    font-size: 15em;
+  }
+  
+  .first--slide .slide--content h1 {
+    font-size: 2em;
+    line-height: 1em;
+  }
+  
+  .first--slide .slide--content h2 {
+    padding-top: 15%;
+    font-size: 1em;
+    top: -0.8em !important;
+  }
+  
+  .slide--content {
+    padding: 2em !important;
+    width: 44% !important;
+  }
+  
+  .third--canvas .center--line h1 {
+    font-size: 2em;
+    white-space: nowrap;
+  }
+  
+  .third--canvas > img#gf1,
+  .third--canvas > img#gf2,
+  .third--canvas > img#gf3 {
+    width: 8% !important;
+    gap: 0.2em !important;
+  }
+  
+  .final-congratulations h1 {
+    font-size: 2em;
+  }
+  
+  .final-congratulations p {
+    font-size: 1.2em;
+  }
+}
+
+/* Оптимизация анимаций для мобильных */
+@keyframes pulse {
+  from { transform: scale(0.9); }
+  to { transform: scale(1.1); }
+}
+
+/* Улучшение отзывчивости */
+button, .restart-btn {
+  min-height: 48px;
+  min-width: 48px;
+}
